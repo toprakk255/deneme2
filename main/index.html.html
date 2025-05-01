@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Duygu Oyunu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-image: url('WhatsAppGorsel.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white; /* Yazı rengini beyaz yaptım */
+        }
+        h1 {
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 40px; /* Başlık boyutunu büyüttüm */
+        }
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+        button {
+            margin: 10px;
+            padding: 20px 40px;
+            font-size: 18px; /* Buton yazı boyutunu büyüttüm */
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .effect {
+            font-size: 200px; /* "╭∩╮" işaretinin boyutunu büyüttüm */
+            color: red;
+            display: none; /* Başlangıçta gizli */
+            animation: shake 1s ease;
+        }
+        .message {
+            font-size: 28px; /* Mesaj yazı boyutunu büyüttüm */
+            display: none; /* Başlangıçta gizli */
+            margin-top: 10px;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            50% { transform: translateX(6px); }
+            75% { transform: translateX(-6px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Kendini nasıl hissediyorsun?</h1>
+    <div class="buttons">
+        <button onclick="handleGoodFeeling()">Şuan kendimi mükemmel hissediyorum</button>
+        <button id="kotuButon">Şuan kendimi hiç iyi hissetmiyorum çok kötüyüm</button>
+    </div>
+
+    <!-- Efekt ve mesaj -->
+    <div id="effect" class="effect">╭∩╮( •̀_•́ )╭∩╮</div>
+    <div id="message" class="message">İyisin, iyisin!</div>
+
+    <script>
+        const kotuButon = document.getElementById('kotuButon');
+        const effect = document.getElementById('effect');
+        const message = document.getElementById('message');
+
+        kotuButon.addEventListener('mouseenter', () => {
+            const x = Math.random() * (window.innerWidth - kotuButon.offsetWidth);
+            const y = Math.random() * (window.innerHeight - kotuButon.offsetHeight);
+            kotuButon.style.position = 'fixed'; // artık ekranın içinde hareket edecek
+            kotuButon.style.left = `${x}px`;
+            kotuButon.style.top = `${y}px`;
+        });
+
+        // "Şuan kendimi mükemmel hissediyorum" butonuna tıklanınca fotoğraf kaybolur ve efekt çıkar
+        function handleGoodFeeling() {
+            // Fotoğraf kaybolmaz çünkü sadece arka planda
+            // Efekt ve mesaj görünür hale gelir
+            effect.style.display = 'block';
+            message.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
